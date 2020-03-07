@@ -36,6 +36,8 @@ class Button extends HTMLElement {
     super();
     this._shadowRoot = this.attachShadow({ mode: 'open' });
     this._shadowRoot.appendChild(template.content.cloneNode(true));
+
+    this.$container = this._shadowRoot.querySelector('.container');
     this.$button = this._shadowRoot.querySelector('button');
 
     this.$button.addEventListener('click', () => {
@@ -57,6 +59,12 @@ class Button extends HTMLElement {
 
   static get observedAttributes() {
     return ['label'];
+  }
+
+  connectedCallback() {
+    if (this.hasAttribute('as-atom')) {
+      this.$container.style.padding = '0px';
+    }
   }
 
   attributeChangedCallback(name, oldVal, newVal) {

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript" src="components/my-button.js"></script>
+    <script type="text/javascript" src="components/my-dropdown.js"></script>
 </head>
 
 <body>
     <h1>WebComponents</h1>
     <my-button label="Click Me"></my-button>
+    <my-dropdown label="Dropdown" option="option2"></my-dropdown>
 
     <script>
         const element = document.querySelector('my-button');
@@ -18,6 +20,15 @@
 
         document.querySelector('my-button')
             .addEventListener('onClick', value => console.log(value));
+
+        document.querySelector('my-dropdown').options = {
+            option1: { label: 'Option 1' },
+            option2: { label: 'Option 2' },
+        };
+
+        document
+            .querySelector('my-dropdown')
+            .addEventListener('onChange', event => console.log(event.detail));
     </script>
 </body>
 
