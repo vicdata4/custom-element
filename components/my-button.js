@@ -38,15 +38,23 @@ class Button extends HTMLElement {
     this._shadowRoot.appendChild(template.content.cloneNode(true));
     this.$button = this._shadowRoot.querySelector('button');
   }
+
   get label() {
     return this.getAttribute('label');
   }
+
+  set label(value) {
+    this.setAttribute('label', value);
+  }
+
   static get observedAttributes() {
     return ['label'];
   }
+
   attributeChangedCallback(name, oldVal, newVal) {
     this.render();
   }
+
   render() {
     this.$button.innerHTML = this.label;
   }
